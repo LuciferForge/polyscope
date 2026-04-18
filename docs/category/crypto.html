@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Crypto Prediction Markets | PolyScope</title>
+  <meta name="description" content="Browse 161 active crypto prediction markets on Polymarket. Current prices, 24h volume, and market data.">
+  <meta property="og:title" content="Crypto Prediction Markets | PolyScope">
+  <meta property="og:description" content="Browse 161 active crypto prediction markets on Polymarket. Current prices, 24h volume, and market data.">
+  <meta property="og:site_name" content="PolyScope">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Crypto Prediction Markets | PolyScope">
+  <meta name="twitter:description" content="Browse 161 active crypto prediction markets on Polymarket. Current prices, 24h volume, and market data.">
+  <link rel="canonical" href="https://polyscope.luciferforge.io/category/crypto.html">
+  
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary:    #0A0A0A;
+  --bg-secondary:  #111111;
+  --bg-tertiary:   #1A1A1A;
+  --border:        #262626;
+  --border-hover:  #404040;
+  --text-primary:  #EDEDED;
+  --text-secondary:#A1A1A1;
+  --text-tertiary: #666666;
+  --accent:        #3B82F6;
+  --accent-hover:  #2563EB;
+  --success:       #22C55E;
+  --danger:        #EF4444;
+  --warning:       #F59E0B;
+  --info:          #8B5CF6;
+  --teal:          #00d4aa;
+  --radius-sm:     6px;
+  --radius-md:     8px;
+  --radius-lg:     12px;
+  --radius-xl:     16px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* ── Nav ── */
+.nav {
+  height: 48px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 24px;
+}
+.nav-brand {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.nav-brand span { color: var(--teal); }
+.nav-links { display: flex; gap: 16px; flex: 1; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--text-primary); background: var(--bg-tertiary); }
+.nav-right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+
+/* ── Layout ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.page-header { padding: 40px 0 32px; }
+.page-title { font-size: 2rem; font-weight: 700; line-height: 1.2; }
+.page-subtitle { color: var(--text-secondary); margin-top: 8px; font-size: 14px; }
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  transition: border-color 0.15s ease;
+}
+.card:hover { border-color: var(--border-hover); }
+
+/* ── Section headers ── */
+.section { margin: 32px 0; }
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s infinite;
+}
+.section-link { font-size: 13px; color: var(--text-secondary); }
+.section-link:hover { color: var(--accent); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Market Table ── */
+.market-table { width: 100%; border-collapse: collapse; }
+.market-table th {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.market-table th.right { text-align: right; }
+.market-table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  vertical-align: middle;
+}
+.market-table tr:hover td { background: var(--bg-tertiary); }
+.market-table tr:last-child td { border-bottom: none; }
+.market-table td.right {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.market-table td.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.market-question {
+  max-width: 380px;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.market-question:hover { color: var(--accent); }
+
+/* ── Price / Change badges ── */
+.price-pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.positive { color: var(--success); }
+.negative { color: var(--danger); }
+.neutral  { color: var(--text-tertiary); }
+
+/* ── Category badge ── */
+.cat-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ── Crash signal cards ── */
+.crash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.crash-card {
+  background: linear-gradient(135deg, rgba(239,68,68,0.06) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  transition: border-color 0.15s;
+}
+.crash-card:hover { border-color: rgba(239,68,68,0.45); }
+.crash-drop {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--danger);
+}
+.crash-question {
+  font-size: 13px;
+  color: var(--text-primary);
+  margin: 8px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.crash-meta {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Category grid ── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.cat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cat-card:hover {
+  border-color: var(--teal);
+  background: var(--bg-tertiary);
+}
+.cat-icon { font-size: 1.75rem; }
+.cat-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.cat-count { font-size: 12px; color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; }
+
+/* ── Monetization banner ── */
+.cta-banner {
+  background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(139,92,246,0.1) 100%);
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+.cta-text { font-size: 14px; color: var(--text-secondary); }
+.cta-text strong { color: var(--text-primary); }
+.cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: var(--accent-hover); color: white; }
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.btn-secondary:hover { border-color: var(--border-hover); color: var(--text-primary); }
+
+/* ── Market detail page ── */
+.market-hero { padding: 32px 0 24px; }
+.market-hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.market-hero-q {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.3;
+  max-width: 800px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.breadcrumb {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.breadcrumb a { color: var(--text-secondary); }
+.breadcrumb a:hover { color: var(--accent); }
+
+/* ── Footer ── */
+footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { color: var(--text-tertiary); }
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 32px 0;
+  flex-wrap: wrap;
+}
+.page-btn {
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.page-btn:hover, .page-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .page-title { font-size: 1.5rem; }
+  .market-hero-q { font-size: 1.2rem; }
+  .cta-banner { flex-direction: column; }
+  .market-table th:nth-child(n+4),
+  .market-table td:nth-child(n+4) { display: none; }
+  .crash-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 12px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="/">Poly<span>Scope</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/category/politics.html">Politics</a>
+    <a href="/category/sports.html">Sports</a>
+    <a href="/category/crypto.html">Crypto</a>
+    <a href="/category/geopolitics.html">Geopolitics</a>
+    <a href="/category/economics.html">Economics</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://checkout.dodopayments.com/buy/pdt_0NcwYHQb6UoiZb41mnshx" class="btn-primary" target="_blank" rel="noopener">Get Data $9</a>
+  </div>
+</nav>
+<div class="container">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>/</span> <span>Categories</span>
+    </div>
+    <h1 class="page-title">₿ Crypto Markets</h1>
+    <p class="page-subtitle">161 active markets &bull; $6.5M 24h volume</p>
+  </div>
+
+  <div class="cta-banner">
+  <div class="cta-text">
+    <strong>Want full price history + orderbook data?</strong><br>
+    Access historical prices, depth charts, and real-time streams for all 2,000+ active markets.
+  </div>
+  <div class="cta-actions">
+    <a href="https://checkout.dodopayments.com/buy/pdt_0NcwYHQb6UoiZb41mnshx" class="btn-primary" target="_blank" rel="noopener">
+      ↗ Get Full Data — $9
+    </a>
+    <a href="https://api.polyscope.luciferforge.io/docs" class="btn-secondary" target="_blank" rel="noopener">
+      ⚡ Real-time API
+    </a>
+  </div>
+</div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="dot"></span>
+        All Crypto Markets
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+<table class="market-table">
+<thead><tr>
+  <th>Market</th>
+  <th>Category</th>
+  <th class="right">Price</th>
+  <th class="right">24h Vol</th>
+  <th class="right">24h</th>
+  <th class="right">Spread</th>
+  <th class="right">Ends</th>
+</tr></thead>
+<tbody><tr>
+  <td><a href="/markets/will-bitcoin-reach-80k-in-april-2026.html" class="market-question">Will Bitcoin reach $80,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">53%</td>
+  <td class="right mono">$624K</td>
+  <td class="right mono positive">+23.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-82k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $82,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$385K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-70k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $70,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">100%</td>
+  <td class="right mono">$319K</td>
+  <td class="right mono positive">+1.2pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-85k-in-april-2026.html" class="market-question">Will Bitcoin reach $85,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$279K</td>
+  <td class="right mono positive">+6.9pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-65k-in-april-2026.html" class="market-question">Will Bitcoin dip to $65,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">9%</td>
+  <td class="right mono">$279K</td>
+  <td class="right mono negative">-5.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-74k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $74,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">100%</td>
+  <td class="right mono">$242K</td>
+  <td class="right mono positive">+31.2pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-78k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $78,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">7%</td>
+  <td class="right mono">$230K</td>
+  <td class="right mono positive">+3.9pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-80k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $80,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$209K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-95k-in-april-2026.html" class="market-question">Will Bitcoin reach $95,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$202K</td>
+  <td class="right mono positive">+0.8pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-90k-in-april-2026.html" class="market-question">Will Bitcoin reach $90,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$186K</td>
+  <td class="right mono positive">+1.5pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-60k-in-april-2026.html" class="market-question">Will Bitcoin dip to $60,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$183K</td>
+  <td class="right mono negative">-1.7pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-4000-in-april-2026.html" class="market-question">Will Ethereum reach $4,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$172K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-72k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $72,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">100%</td>
+  <td class="right mono">$166K</td>
+  <td class="right mono positive">+4.5pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-150k-in-april-2026.html" class="market-question">Will Bitcoin reach $150,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$161K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-up-or-down-on-april-18-2026.html" class="market-question">Bitcoin Up or Down on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">10%</td>
+  <td class="right mono">$149K</td>
+  <td class="right mono negative">-39.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-50k-in-april-2026.html" class="market-question">Will Bitcoin dip to $50,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$141K</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-1b-one-day-after-launch-gj9e-189-291-824-352.html" class="market-question">MegaETH market cap (FDV) &gt;$1B one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">63%</td>
+  <td class="right mono">$138K</td>
+  <td class="right mono positive">+13.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2025</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-100k-in-april-2026.html" class="market-question">Will Bitcoin reach $100,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$131K</td>
+  <td class="right mono positive">+0.4pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-55k-in-april-2026.html" class="market-question">Will Bitcoin dip to $55,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$109K</td>
+  <td class="right mono negative">-0.7pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-68k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $68,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">100%</td>
+  <td class="right mono">$101K</td>
+  <td class="right mono positive">+0.6pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-2b-one-day-after-launch-738-867-649-272-765-733.html" class="market-question">MegaETH market cap (FDV) &gt;$2B one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">28%</td>
+  <td class="right mono">$87K</td>
+  <td class="right mono positive">+13.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2025</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-80k-april-13-19.html" class="market-question">Will Bitcoin reach $80,000 April 13-19?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">8%</td>
+  <td class="right mono">$84K</td>
+  <td class="right mono positive">+3.6pp</td>
+  <td class="right mono">0.9¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 20, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-105k-in-april-2026.html" class="market-question">Will Bitcoin reach $105,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$81K</td>
+  <td class="right mono positive">+0.4pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-20k-in-april-2026.html" class="market-question">Will Bitcoin dip to $20,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$70K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-55000-by-december-31-2026-527-627-868-745-188-361-314-673-612-946-821-624-855-557-684-381.html" class="market-question">Will Bitcoin dip to $55,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">57%</td>
+  <td class="right mono">$60K</td>
+  <td class="right mono negative">-6.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-2800-in-april-2026.html" class="market-question">Will Ethereum reach $2,800 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">14%</td>
+  <td class="right mono">$59K</td>
+  <td class="right mono positive">+4.2pp</td>
+  <td class="right mono">1.5¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-800m-one-day-after-launch-987-114-655.html" class="market-question">MegaETH market cap (FDV) &gt;$800M one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">78%</td>
+  <td class="right mono">$58K</td>
+  <td class="right mono positive">+17.0pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-hit-60k-or-80k-first-965.html" class="market-question">Will Bitcoin hit $60k or $80k first?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">19%</td>
+  <td class="right mono">$58K</td>
+  <td class="right mono negative">-15.0pp</td>
+  <td class="right mono">4.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-2000-in-april-2026.html" class="market-question">Will Ethereum dip to $2,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">10%</td>
+  <td class="right mono">$51K</td>
+  <td class="right mono negative">-8.2pp</td>
+  <td class="right mono">0.6¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-3200-in-april-2026.html" class="market-question">Will Ethereum reach $3,200 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$51K</td>
+  <td class="right mono positive">+0.7pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-84k-april-13-19.html" class="market-question">Will Bitcoin reach $84,000 April 13-19?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$50K</td>
+  <td class="right mono positive">+0.8pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 20, 2026</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-600m-one-day-after-launch-185.html" class="market-question">MegaETH market cap (FDV) &gt;$600M one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">90%</td>
+  <td class="right mono">$48K</td>
+  <td class="right mono positive">+11.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-45000-by-december-31-2026-674-923-755-971-998-525-926-245-316-517-544-589-965-923-986-841-815-224.html" class="market-question">Will Bitcoin dip to $45,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">38%</td>
+  <td class="right mono">$48K</td>
+  <td class="right mono negative">-1.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-45k-in-april-2026.html" class="market-question">Will Bitcoin dip to $45,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$46K</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-200-in-april-2026.html" class="market-question">Will Ethereum dip to $200 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$43K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/usdc-depeg-by-december-31-968.html" class="market-question">USDC depeg by December 31?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$43K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-3000-in-april-2026.html" class="market-question">Will Ethereum reach $3,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$42K</td>
+  <td class="right mono positive">+1.3pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-50000-by-december-31-2026-454-325-222-878-949-487-451.html" class="market-question">Will Bitcoin dip to $50,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">46%</td>
+  <td class="right mono">$39K</td>
+  <td class="right mono negative">-3.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-2600-in-april-2026.html" class="market-question">Will Ethereum reach $2,600 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">47%</td>
+  <td class="right mono">$39K</td>
+  <td class="right mono positive">+14.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-110k-in-april-2026.html" class="market-question">Will Bitcoin reach $110,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$36K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-82k-april-13-19.html" class="market-question">Will Bitcoin reach $82,000 April 13-19?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$36K</td>
+  <td class="right mono positive">+1.0pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 20, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-35k-in-april-2026.html" class="market-question">Will Bitcoin dip to $35,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$35K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-68k-april-13-19.html" class="market-question">Will Bitcoin dip to $68,000 April 13-19?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$35K</td>
+  <td class="right mono negative">-1.3pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 20, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-dip-to-10-in-april-2026.html" class="market-question">Will Solana dip to $10 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$34K</td>
+  <td class="right mono positive">+0.4pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-megaeth-launch-a-token-by-april-30-2026-798.html" class="market-question">Will MegaETH launch a token by April 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">44%</td>
+  <td class="right mono">$32K</td>
+  <td class="right mono positive">+14.0pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-megaeth-perform-an-airdrop-by-june-30-143-229-513-574-212-254.html" class="market-question">Will MegaETH perform an airdrop by June 30? </a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">53%</td>
+  <td class="right mono">$29K</td>
+  <td class="right mono negative">-1.7pp</td>
+  <td class="right mono">2.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Feb 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-2b-one-day-after-launch-392-656-565-965-418-578-388.html" class="market-question">MegaETH market cap (FDV) &gt;$3B one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$28K</td>
+  <td class="right mono positive">+0.7pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-200000-by-december-31-2026-752-232-389.html" class="market-question">Will Bitcoin reach $200,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$27K</td>
+  <td class="right mono positive">+2.1pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-xrp-reach-3-in-april-2026.html" class="market-question">Will XRP reach $3.00 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$27K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-100000-by-december-31-2026-571-361-361.html" class="market-question">Will Bitcoin reach $100,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">39%</td>
+  <td class="right mono">$27K</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-1000000-by-december-31-2026-946.html" class="market-question">Will Bitcoin reach $1,000,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$26K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-40k-in-april-2026.html" class="market-question">Will Bitcoin dip to $40,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$25K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-66k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $66,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">100%</td>
+  <td class="right mono">$25K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-all-time-high-by-june-30-2026.html" class="market-question">Bitcoin all time high by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$23K</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-1800-in-april-2026.html" class="market-question">Will Ethereum dip to $1,800 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$22K</td>
+  <td class="right mono negative">-1.6pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-1pt5b-one-day-after-launch-371-844-879-681.html" class="market-question">MegaETH market cap (FDV) &gt;$1.5B one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">42%</td>
+  <td class="right mono">$20K</td>
+  <td class="right mono positive">+13.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2025</td>
+</tr><tr>
+  <td><a href="/markets/pete-hegseth-out-as-secretary-of-defense-by-april-30.html" class="market-question">Pete Hegseth out as Secretary of Defense by April 30?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$19K</td>
+  <td class="right mono positive">+0.6pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-all-time-high-by-december-31-2026.html" class="market-question">Bitcoin all time high by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">17%</td>
+  <td class="right mono">$19K</td>
+  <td class="right mono positive">+1.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-all-time-high-by-september-30-2026.html" class="market-question">Bitcoin all time high by September 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">10%</td>
+  <td class="right mono">$19K</td>
+  <td class="right mono positive">+1.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Oct 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-base-launch-a-token-by-june-30-2026.html" class="market-question">Will Base launch a token by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">5%</td>
+  <td class="right mono">$19K</td>
+  <td class="right mono positive">+1.3pp</td>
+  <td class="right mono">0.5¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-110000-by-december-31-2026-658-339-969.html" class="market-question">Will Bitcoin reach $110,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">24%</td>
+  <td class="right mono">$17K</td>
+  <td class="right mono positive">+2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-30k-in-april-2026.html" class="market-question">Will Bitcoin dip to $30,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$17K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-reach-160-in-april-2026.html" class="market-question">Will Solana reach $160 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$17K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-3400-in-april-2026.html" class="market-question">Will Ethereum reach $3,400 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$17K</td>
+  <td class="right mono positive">+0.2pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-reach-150-in-april-2026.html" class="market-question">Will Solana reach $150 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$16K</td>
+  <td class="right mono positive">+0.3pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-500000-by-december-31-2026-864.html" class="market-question">Will Bitcoin reach $500,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$15K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-5000-by-december-31-2026-jy3n-991-141-345-117-196-482.html" class="market-question">Will Bitcoin dip to $5,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$14K</td>
+  <td class="right mono negative">-1.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-3500-by-december-31-2026.html" class="market-question">Will Ethereum reach $3,500 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">43%</td>
+  <td class="right mono">$13K</td>
+  <td class="right mono positive">+6.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/bitcoin-above-62k-on-april-18.html" class="market-question">Will the price of Bitcoin be above $62,000 on April 18?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">100%</td>
+  <td class="right mono">$13K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 18, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-dogecoin-reach-0pt15-in-april-2026.html" class="market-question">Will Dogecoin reach $0.15 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">7%</td>
+  <td class="right mono">$13K</td>
+  <td class="right mono positive">+1.7pp</td>
+  <td class="right mono">3.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/ethereum-all-time-high-by-september-30-2026.html" class="market-question">Ethereum all time high by September 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">9%</td>
+  <td class="right mono">$12K</td>
+  <td class="right mono positive">+2.0pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Oct 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-80000-by-december-31-2026-195-842-488-785.html" class="market-question">Will Bitcoin reach $80,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">88%</td>
+  <td class="right mono">$12K</td>
+  <td class="right mono positive">+9.0pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-6b-one-day-after-launch-365-559-334-815-776-488-224-766.html" class="market-question">MegaETH market cap (FDV) &gt;$6B one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$12K</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-35000-by-december-31-2026-744-877-748-219-467-465-646-211-122-947-537-552-555-361-972-954-635-887.html" class="market-question">Will Bitcoin dip to $35,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">18%</td>
+  <td class="right mono">$12K</td>
+  <td class="right mono negative">-2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-250000-by-december-31-2026-579-442.html" class="market-question">Will Bitcoin reach $250,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$12K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-microstrategy-announce-holding-1m-btc-by-december-31-2026-bv81.html" class="market-question">Will MicroStrategy announce holding 1M+ BTC by December 31, 2026?-bV81</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">50%</td>
+  <td class="right mono">$11K</td>
+  <td class="right mono positive">+4.5pp</td>
+  <td class="right mono">8.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-the-netherlands-send-warships-through-the-strait-of-hormuz-by-april-30-2026.html" class="market-question">Will the Netherlands send warships through the Strait of Hormuz by April 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$11K</td>
+  <td class="right mono negative">-0.4pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-tempo-launch-a-token-by-june-30-2026.html" class="market-question">Will Tempo launch a token by June 30 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">8%</td>
+  <td class="right mono">$10K</td>
+  <td class="right mono positive">+1.9pp</td>
+  <td class="right mono">3.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-reach-110-in-april-2026.html" class="market-question">Will Solana reach $110 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">8%</td>
+  <td class="right mono">$10K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.8¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-megaeth-launch-a-token-by-june-30-2026-676-993-477.html" class="market-question">Will MegaETH launch a token by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">91%</td>
+  <td class="right mono">$10K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-190000-by-december-31-2026-936-485-627.html" class="market-question">Will Bitcoin reach $190,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$9K</td>
+  <td class="right mono positive">+2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-satoshi-move-any-bitcoin-in-2026.html" class="market-question">Will Satoshi move any Bitcoin in 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">8%</td>
+  <td class="right mono">$9K</td>
+  <td class="right mono positive">+0.2pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/microstrategy-sells-any-bitcoin-by-june-30-2026.html" class="market-question">MicroStrategy sells any Bitcoin by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$8K</td>
+  <td class="right mono positive">+0.3pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-90000-by-december-31-2026-113-862-581.html" class="market-question">Will Bitcoin reach $90,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">63%</td>
+  <td class="right mono">$8K</td>
+  <td class="right mono positive">+8.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-10000-by-december-31-2026-888-644-567-258-946-853.html" class="market-question">Will Bitcoin dip to $10,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$8K</td>
+  <td class="right mono negative">-0.3pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-40000-by-december-31-2026-593-522-842-874-931-776-991.html" class="market-question">Will Bitcoin dip to $40,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">23%</td>
+  <td class="right mono">$7K</td>
+  <td class="right mono negative">-1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/ethereum-all-time-high-by-december-31-2026.html" class="market-question">Ethereum all time high by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">15%</td>
+  <td class="right mono">$7K</td>
+  <td class="right mono positive">+1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-1400-in-april-2026.html" class="market-question">Will Ethereum dip to $1,400 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$7K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-15000-by-december-31-2026-416-954-417-853-885-363-335-458-585-275-615-269-479-379-516-218-918-374-598.html" class="market-question">Will Bitcoin dip to $15,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$7K</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-25k-in-april-2026.html" class="market-question">Will Bitcoin dip to $25,000 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$6K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-reach-100-in-april-2026.html" class="market-question">Will Solana reach $100 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">28%</td>
+  <td class="right mono">$5K</td>
+  <td class="right mono positive">+1.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-1000-by-december-31-2026.html" class="market-question">Will Ethereum dip to $1,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">21%</td>
+  <td class="right mono">$5K</td>
+  <td class="right mono positive">+1.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-dip-to-60-in-april-2026.html" class="market-question">Will Solana dip to $60 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$5K</td>
+  <td class="right mono negative">-0.6pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-hit-1m-before-gta-vi-872.html" class="market-question">Will bitcoin hit $1m before GTA VI?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">49%</td>
+  <td class="right mono">$5K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-140000-by-december-31-2026-131-829-299.html" class="market-question">Will Bitcoin reach $140,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$4K</td>
+  <td class="right mono positive">+1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/pete-hegseth-out-as-secretary-of-defense-by-december-31.html" class="market-question">Pete Hegseth out as Secretary of Defense by December 31?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">41%</td>
+  <td class="right mono">$4K</td>
+  <td class="right mono negative">-2.0pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-a-province-schedule-a-referendum-to-leave-canada-before-2027.html" class="market-question">Will a province schedule a referendum to leave Canada before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">66%</td>
+  <td class="right mono">$4K</td>
+  <td class="right mono positive">+1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-usdai-launch-a-token-by-april-30.html" class="market-question">Will USD.AI launch a token by April 30?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">100%</td>
+  <td class="right mono">$4K</td>
+  <td class="right mono positive">+1.1pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/eth-flipped-in-2026.html" class="market-question">Ethereum flipped in 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">39%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono negative">-3.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-30000-by-december-31-2026-971-191-116-343-999-758-299.html" class="market-question">Will Bitcoin dip to $30,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">14%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono negative">-2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-10000-by-december-31-2026.html" class="market-question">Will Ethereum reach $10,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono negative">-0.3pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-120000-by-december-31-2026-625-425-562.html" class="market-question">Will Bitcoin reach $120,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">17%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono positive">+3.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-150000-by-december-31-2026-557-246-971.html" class="market-question">Will Bitcoin reach $150,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">10%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-25000-by-december-31-2026-948-243-253-666-115-787-981-282-573-719-186-417-762-754-486-851-278-145.html" class="market-question">Will Bitcoin dip to $25,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono negative">-1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-1600-in-april-2026.html" class="market-question">Will Ethereum dip to $1,600 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono negative">-1.1pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-130000-by-december-31-2026-756-151-855.html" class="market-question">Will Bitcoin reach $130,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">16%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono positive">+2.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-reach-120-in-april-2026.html" class="market-question">Will Solana reach $120 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono negative">-0.9pp</td>
+  <td class="right mono">0.5¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/megaeth-market-cap-fdv-4b-one-day-after-launch-484-688-448-486-873-133-182.html" class="market-question">MegaETH market cap (FDV) &gt;$4B one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono positive">+0.6pp</td>
+  <td class="right mono">0.6¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-5000-by-december-31-2026.html" class="market-question">Will Ethereum reach $5,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">14%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono positive">+2.5pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-1500-by-december-31-2026.html" class="market-question">Will Ethereum dip to $1,500 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">51%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-800-by-december-31-2026.html" class="market-question">Will Ethereum dip to $800 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">17%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono positive">+3.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/solstice-fdv-above-50m-one-day-after-launch.html" class="market-question">Solstice FDV above $50M one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">86%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono positive">+3.2pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-160000-by-december-31-2026-934-934-164.html" class="market-question">Will Bitcoin reach $160,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">8%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-4500-by-december-31-2026.html" class="market-question">Will Ethereum reach $4,500 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">18%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono positive">+1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-3800-in-april-2026.html" class="market-question">Will Ethereum reach $3,800 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-dip-to-30-in-april-2026.html" class="market-question">Will Solana dip to $30 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-dogecoin-reach-0pt2-in-april-2026.html" class="market-question">Will Dogecoin reach $0.20 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-have-the-best-performance-in-2026-749.html" class="market-question">Will Bitcoin have the best performance in 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">30%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono positive">+2.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-base-launch-a-token-by-december-31-2026-154.html" class="market-question">Will Base launch a token by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">40%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono negative">-0.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-hit-150k-by-june-30-2026.html" class="market-question">Will Bitcoin hit $150k by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$959</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/microstrategy-sells-any-bitcoin-by-december-31-2026.html" class="market-question">MicroStrategy sells any Bitcoin by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">10%</td>
+  <td class="right mono">$899</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/ethereum-all-time-high-by-june-30-2026.html" class="market-question">Ethereum all time high by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$805</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-180000-by-december-31-2026-629-622-598.html" class="market-question">Will Bitcoin reach $180,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$711</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-dip-to-1200-in-april-2026.html" class="market-question">Will Ethereum dip to $1,200 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$682</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-metamask-launch-a-token-by-june-30.html" class="market-question">Will MetaMask launch a token by June 30?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">7%</td>
+  <td class="right mono">$562</td>
+  <td class="right mono positive">+0.2pp</td>
+  <td class="right mono">1.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-solana-dip-to-50-in-april-2026.html" class="market-question">Will Solana dip to $50 in April?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$540</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-metamask-launch-a-token-by-september-30-2026.html" class="market-question">Will MetaMask launch a token by September 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">23%</td>
+  <td class="right mono">$526</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Oct 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-replace-sha-256-before-2027.html" class="market-question">Will Bitcoin replace SHA-256 before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">8%</td>
+  <td class="right mono">$476</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">1.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-dip-to-20000-by-december-31-2026-121-885-178-397-354-236-731.html" class="market-question">Will Bitcoin dip to $20,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">8%</td>
+  <td class="right mono">$295</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-hit-150k-by-december-31-2026.html" class="market-question">Will Bitcoin hit $150k by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">10%</td>
+  <td class="right mono">$291</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-outperform-gold-in-2026.html" class="market-question">Will Bitcoin outperform Gold in 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">34%</td>
+  <td class="right mono">$255</td>
+  <td class="right mono negative">-1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-8000-by-december-31-2026.html" class="market-question">Will Ethereum reach $8,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$211</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-6500-by-december-31-2026.html" class="market-question">Will Ethereum reach $6,500 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$190</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-microstrategy-announce-holding-800k-btc-by-december-31-2026.html" class="market-question">Will MicroStrategy announce holding 800k+ BTC by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">98%</td>
+  <td class="right mono">$145</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-bitcoin-reach-170000-by-december-31-2026-335-688-943.html" class="market-question">Will Bitcoin reach $170,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">7%</td>
+  <td class="right mono">$144</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/eu-dissolves-before-2027.html" class="market-question">EU dissolves before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$142</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/altcoin-market-cap-dip-to-150b-before-2027.html" class="market-question">Altcoin market cap dip to $150B before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">78%</td>
+  <td class="right mono">$135</td>
+  <td class="right mono negative">-5.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-metamask-launch-a-token-by-december-31-2026.html" class="market-question">Will MetaMask launch a token by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">30%</td>
+  <td class="right mono">$109</td>
+  <td class="right mono positive">+1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-abstract-launch-a-token-by-december-31-2026.html" class="market-question">Will Abstract launch a token by December 31, 2026</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">32%</td>
+  <td class="right mono">$108</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-4000-by-december-31-2026.html" class="market-question">Will Ethereum reach $4,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">27%</td>
+  <td class="right mono">$87</td>
+  <td class="right mono positive">+2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/ripple-labs-ipo-before-2027.html" class="market-question">Ripple Labs IPO before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">13%</td>
+  <td class="right mono">$81</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-opensea-launch-a-token-by-june-30-2026.html" class="market-question">Will OpenSea launch a token by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$69</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">1.8¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-fomo-launch-a-token-by-june-30-2026.html" class="market-question">Will Fomo launch a token by June 30 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$63</td>
+  <td class="right mono positive">+10.5pp</td>
+  <td class="right mono">22.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-tempo-launch-a-token-by-september-30-2026.html" class="market-question">Will Tempo launch a token by September 30 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$53</td>
+  <td class="right mono positive">+1.6pp</td>
+  <td class="right mono">2.8¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ostium-launch-a-token-by-december-31-2026.html" class="market-question">Will Ostium launch a token by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">72%</td>
+  <td class="right mono">$43</td>
+  <td class="right mono positive">+4.5pp</td>
+  <td class="right mono">4.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/solstice-fdv-above-100m-one-day-after-launch.html" class="market-question">Solstice FDV above $100M one day after launch?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">36%</td>
+  <td class="right mono">$42</td>
+  <td class="right mono negative">-2.5pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-5500-by-december-31-2026.html" class="market-question">Will Ethereum reach $5,500 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">10%</td>
+  <td class="right mono">$36</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-fomo-launch-a-token-by-december-31-2026.html" class="market-question">Will Fomo launch a token by December 31 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">27%</td>
+  <td class="right mono">$26</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-6000-by-december-31-2026.html" class="market-question">Will Ethereum reach $6,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">9%</td>
+  <td class="right mono">$25</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-stablecoins-hit-500b-before-2027.html" class="market-question">Will stablecoins hit $500B before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">14%</td>
+  <td class="right mono">$23</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/another-sp-500-company-buys-bitcoin-by-december-31-2026.html" class="market-question">Another S&amp;P 500 Company buys Bitcoin by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">28%</td>
+  <td class="right mono">$20</td>
+  <td class="right mono positive">+1.9pp</td>
+  <td class="right mono">8.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Nov 30, 2025</td>
+</tr><tr>
+  <td><a href="/markets/will-hibachi-launch-a-token-by-december-31-2026.html" class="market-question">Will Hibachi launch a token by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">36%</td>
+  <td class="right mono">$12</td>
+  <td class="right mono negative">-5.0pp</td>
+  <td class="right mono">14.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-exponent-launch-a-token-by-december-31-2026.html" class="market-question">Will Exponent launch a token by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">18%</td>
+  <td class="right mono">$11</td>
+  <td class="right mono negative">-1.0pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-axiom-launch-a-token-by-december-31-2026.html" class="market-question">Will Axiom launch a token by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$8</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">5.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-variational-launch-a-token-by-december-31-2026-577-621.html" class="market-question">Will Variational launch a token by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">75%</td>
+  <td class="right mono">$5</td>
+  <td class="right mono positive">+4.5pp</td>
+  <td class="right mono">7.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-tempo-launch-a-token-by-december-31-2026.html" class="market-question">Will Tempo launch a token by December 31 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">23%</td>
+  <td class="right mono">$4</td>
+  <td class="right mono positive">+1.5pp</td>
+  <td class="right mono">11.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-the-doge-1-lunar-mission-launch-before-2027.html" class="market-question">Will the Doge-1 Lunar Mission launch before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">3.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/solana-all-time-high-by-june-30-2026.html" class="market-question">Solana all time high by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jul 01, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-ethereum-reach-7000-by-december-31-2026.html" class="market-question">Will Ethereum reach $7,000 by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-ole-gunnar-solskjr-be-appointed-as-manager-of-manchester-united.html" class="market-question">Will Ole Gunnar Solskjær be appointed as manager of Manchester United?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono positive">+0.6pp</td>
+  <td class="right mono">1.6¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-usdt-market-cap-hit-200b-before-2027.html" class="market-question">Will USDT market cap hit $200B before 2027?</a></td>
+  <td><span class="cat-badge">Crypto</span></td>
+  <td class="right mono">96%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono positive">+1.4pp</td>
+  <td class="right mono">8.8¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 01, 2026</td>
+</tr></tbody>
+</table>
+</div>
+  </div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>Data by <a href="https://luciferforge.io" target="_blank" rel="noopener">LuciferForge</a> &bull; <a href="https://protodex.io" target="_blank" rel="noopener">protodex.io</a> &bull; Updated April 18, 2026</span>
+      <div class="footer-links">
+        <a href="/">Screener</a>
+        <a href="/category/politics.html">Politics</a>
+        <a href="/category/sports.html">Sports</a>
+        <a href="/category/crypto.html">Crypto</a>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NcwYHQb6UoiZb41mnshx" target="_blank" rel="noopener">Full Data $9</a>
+        <a href="https://api.polyscope.luciferforge.io/docs" target="_blank" rel="noopener">API</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Science &amp; Tech Prediction Markets | PolyScope</title>
+  <meta name="description" content="Browse 79 active science &amp; tech prediction markets on Polymarket. Current prices, 24h volume, and market data.">
+  <meta property="og:title" content="Science &amp; Tech Prediction Markets | PolyScope">
+  <meta property="og:description" content="Browse 79 active science &amp; tech prediction markets on Polymarket. Current prices, 24h volume, and market data.">
+  <meta property="og:site_name" content="PolyScope">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Science &amp; Tech Prediction Markets | PolyScope">
+  <meta name="twitter:description" content="Browse 79 active science &amp; tech prediction markets on Polymarket. Current prices, 24h volume, and market data.">
+  <link rel="canonical" href="https://polyscope.luciferforge.io/category/science_tech.html">
+  
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary:    #0A0A0A;
+  --bg-secondary:  #111111;
+  --bg-tertiary:   #1A1A1A;
+  --border:        #262626;
+  --border-hover:  #404040;
+  --text-primary:  #EDEDED;
+  --text-secondary:#A1A1A1;
+  --text-tertiary: #666666;
+  --accent:        #3B82F6;
+  --accent-hover:  #2563EB;
+  --success:       #22C55E;
+  --danger:        #EF4444;
+  --warning:       #F59E0B;
+  --info:          #8B5CF6;
+  --teal:          #00d4aa;
+  --radius-sm:     6px;
+  --radius-md:     8px;
+  --radius-lg:     12px;
+  --radius-xl:     16px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* ── Nav ── */
+.nav {
+  height: 48px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 24px;
+}
+.nav-brand {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.nav-brand span { color: var(--teal); }
+.nav-links { display: flex; gap: 16px; flex: 1; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--text-primary); background: var(--bg-tertiary); }
+.nav-right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+
+/* ── Layout ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.page-header { padding: 40px 0 32px; }
+.page-title { font-size: 2rem; font-weight: 700; line-height: 1.2; }
+.page-subtitle { color: var(--text-secondary); margin-top: 8px; font-size: 14px; }
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  transition: border-color 0.15s ease;
+}
+.card:hover { border-color: var(--border-hover); }
+
+/* ── Section headers ── */
+.section { margin: 32px 0; }
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s infinite;
+}
+.section-link { font-size: 13px; color: var(--text-secondary); }
+.section-link:hover { color: var(--accent); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Market Table ── */
+.market-table { width: 100%; border-collapse: collapse; }
+.market-table th {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.market-table th.right { text-align: right; }
+.market-table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  vertical-align: middle;
+}
+.market-table tr:hover td { background: var(--bg-tertiary); }
+.market-table tr:last-child td { border-bottom: none; }
+.market-table td.right {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.market-table td.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.market-question {
+  max-width: 380px;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.market-question:hover { color: var(--accent); }
+
+/* ── Price / Change badges ── */
+.price-pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.positive { color: var(--success); }
+.negative { color: var(--danger); }
+.neutral  { color: var(--text-tertiary); }
+
+/* ── Category badge ── */
+.cat-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ── Crash signal cards ── */
+.crash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.crash-card {
+  background: linear-gradient(135deg, rgba(239,68,68,0.06) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  transition: border-color 0.15s;
+}
+.crash-card:hover { border-color: rgba(239,68,68,0.45); }
+.crash-drop {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--danger);
+}
+.crash-question {
+  font-size: 13px;
+  color: var(--text-primary);
+  margin: 8px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.crash-meta {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Category grid ── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.cat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cat-card:hover {
+  border-color: var(--teal);
+  background: var(--bg-tertiary);
+}
+.cat-icon { font-size: 1.75rem; }
+.cat-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.cat-count { font-size: 12px; color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; }
+
+/* ── Monetization banner ── */
+.cta-banner {
+  background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(139,92,246,0.1) 100%);
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+.cta-text { font-size: 14px; color: var(--text-secondary); }
+.cta-text strong { color: var(--text-primary); }
+.cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: var(--accent-hover); color: white; }
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.btn-secondary:hover { border-color: var(--border-hover); color: var(--text-primary); }
+
+/* ── Market detail page ── */
+.market-hero { padding: 32px 0 24px; }
+.market-hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.market-hero-q {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.3;
+  max-width: 800px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.breadcrumb {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.breadcrumb a { color: var(--text-secondary); }
+.breadcrumb a:hover { color: var(--accent); }
+
+/* ── Footer ── */
+footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { color: var(--text-tertiary); }
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 32px 0;
+  flex-wrap: wrap;
+}
+.page-btn {
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.page-btn:hover, .page-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .page-title { font-size: 1.5rem; }
+  .market-hero-q { font-size: 1.2rem; }
+  .cta-banner { flex-direction: column; }
+  .market-table th:nth-child(n+4),
+  .market-table td:nth-child(n+4) { display: none; }
+  .crash-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 12px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="/">Poly<span>Scope</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/category/politics.html">Politics</a>
+    <a href="/category/sports.html">Sports</a>
+    <a href="/category/crypto.html">Crypto</a>
+    <a href="/category/geopolitics.html">Geopolitics</a>
+    <a href="/category/economics.html">Economics</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://checkout.dodopayments.com/buy/pdt_0NcwYHQb6UoiZb41mnshx" class="btn-primary" target="_blank" rel="noopener">Get Data $9</a>
+  </div>
+</nav>
+<div class="container">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>/</span> <span>Categories</span>
+    </div>
+    <h1 class="page-title">🔬 Science & Tech Markets</h1>
+    <p class="page-subtitle">79 active markets &bull; $1.1M 24h volume</p>
+  </div>
+
+  <div class="cta-banner">
+  <div class="cta-text">
+    <strong>Want full price history + orderbook data?</strong><br>
+    Access historical prices, depth charts, and real-time streams for all 2,000+ active markets.
+  </div>
+  <div class="cta-actions">
+    <a href="https://checkout.dodopayments.com/buy/pdt_0NcwYHQb6UoiZb41mnshx" class="btn-primary" target="_blank" rel="noopener">
+      ↗ Get Full Data — $9
+    </a>
+    <a href="https://api.polyscope.luciferforge.io/docs" class="btn-secondary" target="_blank" rel="noopener">
+      ⚡ Real-time API
+    </a>
+  </div>
+</div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="dot"></span>
+        All Science & Tech Markets
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+<table class="market-table">
+<thead><tr>
+  <th>Market</th>
+  <th>Category</th>
+  <th class="right">Price</th>
+  <th class="right">24h Vol</th>
+  <th class="right">24h</th>
+  <th class="right">Spread</th>
+  <th class="right">Ends</th>
+</tr></thead>
+<tbody><tr>
+  <td><a href="/markets/will-the-us-confirm-that-aliens-exist-before-2027-789.html" class="market-question">Will the US confirm that aliens exist before 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">19%</td>
+  <td class="right mono">$422K</td>
+  <td class="right mono positive">+1.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/nba-hou-lal-2026-04-18.html" class="market-question">Rockets vs. Lakers</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">67%</td>
+  <td class="right mono">$196K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 19, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-moonshot-have-the-best-ai-model-at-the-end-of-april-2026.html" class="market-question">Will Moonshot have the best AI model at the end of April 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$129K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropic-have-the-best-ai-model-at-the-end-of-april-2026.html" class="market-question">Will Anthropic have the best AI model at the end of April 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">96%</td>
+  <td class="right mono">$77K</td>
+  <td class="right mono positive">+2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-have-the-best-ai-model-at-the-end-of-april-2026.html" class="market-question">Will OpenAI have the best AI model at the end of April 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$74K</td>
+  <td class="right mono negative">-0.9pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-citigroup-or-any-of-its-underwriting-affiliates-serve-as-the-lead-underwriter-in-spacexs-initial-public-offering-719.html" class="market-question">Will Citigroup or any of its underwriting affiliates serve as the lead underwriter in SpaceX’s initial public offering?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$31K</td>
+  <td class="right mono positive">+0.3pp</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-jpmorgan-chase-or-any-of-its-underwriting-affiliates-serve-as-the-lead-underwriter-in-spacexs-initial-public-offering-471.html" class="market-question">Will JPMorgan Chase or any of its underwriting affiliates serve as the lead underwriter in SpaceX’s initial public offering?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$23K</td>
+  <td class="right mono positive">+0.4pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropics-market-cap-be-between-400b-and-600b-at-market-close-on-ipo-day.html" class="market-question">Will Anthropic’s market cap be between $400B and $600B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$18K</td>
+  <td class="right mono positive">+1.1pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropic-have-the-third-best-ai-model-at-the-end-of-april-2026.html" class="market-question">Will Anthropic have the third best AI model at the end of April 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">71%</td>
+  <td class="right mono">$17K</td>
+  <td class="right mono negative">-5.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-ipo-by-april-30-2026-245.html" class="market-question">Will SpaceX IPO by April 30, 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$12K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-sex-544.html" class="market-question">Will SpaceX&#x27;s public ticker be $SEX?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$11K</td>
+  <td class="right mono negative">-0.5pp</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-an-anthropic-claude-model-score-at-least-45-on-humanitys-last-exam.html" class="market-question">Will an Anthropic Claude model score at least 45% on Humanity’s Last Exam?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">44%</td>
+  <td class="right mono">$7K</td>
+  <td class="right mono negative">-15.5pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-mars-627.html" class="market-question">Will SpaceX&#x27;s public ticker be $MARS?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$5K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropic-have-the-best-ai-model-at-the-end-of-june-2026.html" class="market-question">Will Anthropic have the best AI model at the end of June 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">56%</td>
+  <td class="right mono">$4K</td>
+  <td class="right mono negative">-1.8pp</td>
+  <td class="right mono">0.6¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-ipo-by-june-30-2026-372-264-619.html" class="market-question">Will SpaceX IPO by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">69%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-have-the-best-ai-model-at-the-end-of-june-2026.html" class="market-question">Will OpenAI have the best AI model at the end of June 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">13%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono negative">-2.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-space-625.html" class="market-question">Will SpaceX&#x27;s public ticker be $SPACE?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-have-the-1-ai-model-at-the-end-of-april-2026-style-control-on.html" class="market-question">Will OpenAI have the #1 AI model at the end of April 2026 (Style Control On)?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$3K</td>
+  <td class="right mono positive">+2.1pp</td>
+  <td class="right mono">0.5¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Apr 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-sx-742.html" class="market-question">Will SpaceX&#x27;s public ticker be $SX?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-star-796.html" class="market-question">Will SpaceX&#x27;s public ticker be $STAR?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-moonshot-have-the-best-ai-model-at-the-end-of-june-2026.html" class="market-question">Will Moonshot have the best AI model at the end of June 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-between-3pt0t-and-3pt5t-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be between $3.0T and $3.5T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-between-2pt5t-and-3pt0t-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be between $2.5T and $3.0T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">11%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono negative">-1.3pp</td>
+  <td class="right mono">2.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-not-ipo-by-december-31-2027-776.html" class="market-question">Will SpaceX not IPO by December 31, 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-ipo-by-may-31-2026-259.html" class="market-question">Will SpaceX IPO by May 31, 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$2K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">May 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-between-900b-and-1t-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be between $900B and $1T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-ipo-by-december-31-2026.html" class="market-question">Will OpenAI IPO by December 31 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">31%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono negative">-4.0pp</td>
+  <td class="right mono">5.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-greater-than-1t-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be greater than $1T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">93%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-spax-713.html" class="market-question">Will SpaceX&#x27;s public ticker be $SPAX?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono positive">+0.4pp</td>
+  <td class="right mono">0.8¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-be-acquired-before-2027-859.html" class="market-question">Will OpenAI be acquired before 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">7%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/fda-approves-retatrutide-this-year.html" class="market-question">FDA approves Retatrutide this year?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">14%</td>
+  <td class="right mono">$1K</td>
+  <td class="right mono positive">+3.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/anthropic-ceo-arrested.html" class="market-question">Anthropic CEO arrested?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$967</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropics-market-cap-be-greater-than-600b-at-market-close-on-ipo-day.html" class="market-question">Will Anthropic’s market cap be $600B or greater at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">1%</td>
+  <td class="right mono">$955</td>
+  <td class="right mono negative">-1.0pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropics-market-cap-be-less-than-100b-at-market-close-on-ipo-day.html" class="market-question">Will Anthropic’s market cap be less than $100B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$947</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-not-ipo-by-december-31-2026.html" class="market-question">Will OpenAI not IPO by December 31, 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">62%</td>
+  <td class="right mono">$924</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropic-not-ipo-by-june-30-2026.html" class="market-question">Will Anthropic not IPO by June 30, 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">96%</td>
+  <td class="right mono">$887</td>
+  <td class="right mono negative">-0.8pp</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-have-a-1-ai-model-by-june-30.html" class="market-question">Will OpenAI have a #1 AI model by June 30?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">29%</td>
+  <td class="right mono">$809</td>
+  <td class="right mono negative">-0.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/tesla-and-spacex-merger-officially-announced-by-june-30.html" class="market-question">Tesla and SpaceX merger officially announced by June 30?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$743</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.5¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-the-chopsticks-catch-spacex-starship-flight-test-12-superheavy-booster-488-561-331-756-239-646-369.html" class="market-question">Will the chopsticks catch SpaceX Starship Flight Test 12 Superheavy booster?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$700</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">2.6¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-moonshot-have-the-top-ai-model-at-the-end-of-june-2026.html" class="market-question">Will Moonshot have the top AI model at the end of June 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$684</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/new-pandemic-in-2026.html" class="market-question">New pandemic in 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">12%</td>
+  <td class="right mono">$681</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/spacex-space-exploration-technologies-corp-ipo-before-2027.html" class="market-question">SpaceX (Space Exploration Technologies Corp.) IPO before 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">95%</td>
+  <td class="right mono">$580</td>
+  <td class="right mono positive">+0.5pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-not-ipo-by-december-31-2027.html" class="market-question">Will SpaceX not IPO by December 31, 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$570</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-another-ticker-745.html" class="market-question">Will SpaceX&#x27;s public ticker be another ticker?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">60%</td>
+  <td class="right mono">$544</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">0.7¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/openai-1t-ipo-before-2027.html" class="market-question">OpenAI $1t+ IPO before 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">26%</td>
+  <td class="right mono">$505</td>
+  <td class="right mono negative">-0.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-the-starship-for-spacex-starship-flight-test-12-achieve-a-successful-splashdown-949-385-253-275-459-885.html" class="market-question">Will the Starship for SpaceX Starship Flight Test 12 achieve a successful splashdown?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$492</td>
+  <td class="right mono negative">-1.8pp</td>
+  <td class="right mono">4.5¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropics-market-cap-be-between-200b-and-300b-at-market-close-on-ipo-day.html" class="market-question">Will Anthropic’s market cap be between $200B and $300B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$468</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-x-333.html" class="market-question">Will SpaceX&#x27;s public ticker be $X?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">30%</td>
+  <td class="right mono">$455</td>
+  <td class="right mono negative">-2.0pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-deutsche-bank-or-any-of-its-underwriting-affiliates-serve-as-the-lead-underwriter-in-spacexs-initial-public-offering-824.html" class="market-question">Will Deutsche Bank or any of its underwriting affiliates serve as the lead underwriter in SpaceX’s initial public offering?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$403</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/openai-ipo-before-2027.html" class="market-question">OpenAI IPO before 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">40%</td>
+  <td class="right mono">$392</td>
+  <td class="right mono negative">-1.5pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-morgan-stanley-or-any-of-its-underwriting-affiliates-serve-as-the-lead-underwriter-in-spacexs-initial-public-offering-299.html" class="market-question">Will Morgan Stanley or any of its underwriting affiliates serve as the lead underwriter in SpaceX’s initial public offering?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">43%</td>
+  <td class="right mono">$389</td>
+  <td class="right mono negative">-0.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/spacex-ipo-closing-market-cap-above-3t.html" class="market-question">SpaceX IPO closing market cap above $3T</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">18%</td>
+  <td class="right mono">$349</td>
+  <td class="right mono negative">-2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-openais-market-cap-be-between-750b-and-1t-at-market-close-on-ipo-day.html" class="market-question">Will OpenAI’s market cap be between $750B and $1T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$274</td>
+  <td class="right mono negative">-0.7pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/anthropic-ipo-before-2027.html" class="market-question">Anthropic IPO before 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">52%</td>
+  <td class="right mono">$256</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/spacex-ipo-closing-market-cap-above-1t-528.html" class="market-question">SpaceX IPO closing market cap above $1T?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">93%</td>
+  <td class="right mono">$246</td>
+  <td class="right mono negative">-0.1pp</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-ipo-by-june-30-2026.html" class="market-question">Will OpenAI IPO by June 30 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$231</td>
+  <td class="right mono positive">+0.1pp</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">—</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-public-ticker-be-spc-937.html" class="market-question">Will SpaceX&#x27;s public ticker be $SPC?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$191</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.3¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-goldman-sachs-or-any-of-its-underwriting-affiliates-serve-as-the-lead-underwriter-in-spacexs-initial-public-offering-197.html" class="market-question">Will Goldman Sachs or any of its underwriting affiliates serve as the lead underwriter in SpaceX’s initial public offering?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">27%</td>
+  <td class="right mono">$163</td>
+  <td class="right mono positive">+1.5pp</td>
+  <td class="right mono">2.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/spacex-ipo-closing-market-cap-above-2t-574.html" class="market-question">SpaceX IPO closing market cap above $2T?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">47%</td>
+  <td class="right mono">$150</td>
+  <td class="right mono positive">+2.0pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-greater-than-2pt0t-at-market-close-on-ipo-day-277.html" class="market-question">Will SpaceX&#x27;s market cap be greater than $2.0T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">45%</td>
+  <td class="right mono">$141</td>
+  <td class="right mono positive">+2.0pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/openai-ipo-closing-market-cap-above-1pt2t.html" class="market-question">OpenAI IPO closing market cap above $1.2T?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">48%</td>
+  <td class="right mono">$114</td>
+  <td class="right mono negative">-4.0pp</td>
+  <td class="right mono">8.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-anthropic-have-the-highest-ipo-market-cap-2026-673.html" class="market-question">Will Anthropic have the highest IPO Market Cap 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$109</td>
+  <td class="right mono negative">-0.2pp</td>
+  <td class="right mono">1.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-starship-flight-test-12-superheavy-explode-995-876-365-284-849-486-211.html" class="market-question">Will SpaceX Starship Flight Test 12 Superheavy explode?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$70</td>
+  <td class="right mono negative">-0.4pp</td>
+  <td class="right mono">2.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jan 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/openai-ipo-closing-market-cap-above-1t.html" class="market-question">OpenAI IPO closing market cap above $1T?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">61%</td>
+  <td class="right mono">$64</td>
+  <td class="right mono negative">-7.0pp</td>
+  <td class="right mono">3.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-have-the-highest-ipo-market-cap-2026-516.html" class="market-question">Will SpaceX have the highest IPO Market Cap 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">90%</td>
+  <td class="right mono">$58</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/spacex-ipo-closing-market-cap-above-1pt2t-954.html" class="market-question">SpaceX IPO closing market cap above $1.2T?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">90%</td>
+  <td class="right mono">$56</td>
+  <td class="right mono negative">-0.5pp</td>
+  <td class="right mono">1.0¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-openais-market-cap-be-between-1t-and-1pt25t-at-market-close-on-ipo-day.html" class="market-question">Will OpenAI’s market cap be between $1T and $1.25T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$46</td>
+  <td class="right mono positive">+0.4pp</td>
+  <td class="right mono">0.8¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openais-market-cap-be-between-500b-and-750b-at-market-close-on-ipo-day.html" class="market-question">Will OpenAI’s market cap be between $500B and $750B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$29</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openais-market-cap-be-between-1pt25t-and-1pt5t-at-market-close-on-ipo-day.html" class="market-question">Will OpenAI’s market cap be between $1.25T and $1.5T at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">6%</td>
+  <td class="right mono">$23</td>
+  <td class="right mono positive">+0.8pp</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openais-market-cap-be-less-than-500b-at-market-close-on-ipo-day.html" class="market-question">Will OpenAI’s market cap be less than $500B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">2%</td>
+  <td class="right mono">$21</td>
+  <td class="right mono positive">+0.6pp</td>
+  <td class="right mono">3.9¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Jun 30, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-openai-have-the-highest-ipo-market-cap-2026-734.html" class="market-question">Will OpenAI have the highest IPO Market Cap 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$5</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/human-moon-landing-in-2026.html" class="market-question">Human moon landing in 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">4%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-between-800b-and-900b-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be between $800B and $900B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-between-700b-and-800b-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be between $700B and $800B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-less-than-500b-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be less than $500B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-between-500b-and-600b-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be between $500B and $600B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.1¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-spacexs-market-cap-be-between-600b-and-700b-at-market-close-on-ipo-day.html" class="market-question">Will SpaceX&#x27;s market cap be between $600B and $700B at market close on IPO day?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">0%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr><tr>
+  <td><a href="/markets/will-7-8-spacex-starship-launches-successfully-reach-space-in-2026.html" class="market-question">Will 7-8 SpaceX Starship launches successfully reach Space in 2026?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">5%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono negative">-0.8pp</td>
+  <td class="right mono">5.4¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2026</td>
+</tr><tr>
+  <td><a href="/markets/will-spacex-not-ipo-by-december-31-2027-481-338.html" class="market-question">Will SpaceX not IPO by December 31, 2027?</a></td>
+  <td><span class="cat-badge">Science & Tech</span></td>
+  <td class="right mono">3%</td>
+  <td class="right mono">$0</td>
+  <td class="right mono neutral">—</td>
+  <td class="right mono">0.2¢</td>
+  <td class="right" style="color:var(--text-tertiary);font-size:12px;">Dec 31, 2027</td>
+</tr></tbody>
+</table>
+</div>
+  </div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>Data by <a href="https://luciferforge.io" target="_blank" rel="noopener">LuciferForge</a> &bull; <a href="https://protodex.io" target="_blank" rel="noopener">protodex.io</a> &bull; Updated April 18, 2026</span>
+      <div class="footer-links">
+        <a href="/">Screener</a>
+        <a href="/category/politics.html">Politics</a>
+        <a href="/category/sports.html">Sports</a>
+        <a href="/category/crypto.html">Crypto</a>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NcwYHQb6UoiZb41mnshx" target="_blank" rel="noopener">Full Data $9</a>
+        <a href="https://api.polyscope.luciferforge.io/docs" target="_blank" rel="noopener">API</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
