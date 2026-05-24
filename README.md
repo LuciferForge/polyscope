@@ -8,7 +8,7 @@
 
 - **24h movers** — biggest price swings across active markets
 - **Volume leaders** — what's actually trading, not what's just listed
-- **Crash signals** — markets that lost >20% in 1h, where mean-reversion historically wins ~80% (see [cross-signal-data](https://github.com/LuciferForge/cross-signal-data))
+- **Crash signals** — markets down ≥15% over 24h (`one_day_change <= -0.15` in [`build_screener.py`](build_screener.py#L644-L646)), a proxy for "dropped from a recent high" mean-reversion setups. See the [methodology discussion](https://github.com/LuciferForge/polyscope/discussions/2) for honest caveats and how the historical 73% / 5,629-event number from [cross-signal-data](https://github.com/LuciferForge/cross-signal-data) relates to (but isn't identical to) this proxy.
 - **Category filters** — politics, crypto, sports, economics, AI, etc.
 - **Active markets only** — `closed=false` Gamma API filter, daily refresh
 
@@ -20,7 +20,7 @@
 
 ## Why this exists
 
-Polymarket's own UI optimises for individual market depth. If you want to **scan** the universe for opportunities — "what crashed in the last hour", "where is volume actually concentrated", "what political markets exist under 20¢" — you need a screener. There wasn't a free one, so this is it.
+Polymarket's own UI optimises for individual market depth. If you want to **scan** the universe for opportunities — "what dropped ≥15% in the last 24h", "where is volume actually concentrated", "what political markets exist under 20¢" — you need a screener. There wasn't a free one, so this is it.
 
 ## Run it yourself
 
@@ -36,7 +36,7 @@ No API key required. Hits the public Gamma endpoint.
 
 ## Want the underlying data?
 
-The screener shows the latest snapshot. If you want the **full historical price series** — 9.5M+ snapshots across 9,550 markets for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22).
+The screener shows the latest snapshot. If you want the **full historical price series** — 10.8M+ snapshots across 13,963 markets, 43+ days of orderbook depth, for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) ($9, SQLite + CSV).
 
 ## License
 
