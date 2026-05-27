@@ -38,6 +38,17 @@ No API key required. Hits the public Gamma endpoint.
 
 The screener shows the latest snapshot. If you want the **full historical price series** — 10.8M+ snapshots across 13,963 markets, 43+ days of orderbook depth, for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) ($9, SQLite + CSV).
 
+## Community / open questions
+
+The roadmap is being shaped in the open. Live threads (jump in if any of these are useful — comments directly influence what ships next):
+
+- [#1 — What screener views would you actually use?](https://github.com/LuciferForge/polyscope/discussions/1) — liquidity-weighted movers, new-market alerts, resolution-soon view, cross-market correlations
+- [#2 — How the "Crash Signal" actually works (methodology + the 73% number)](https://github.com/LuciferForge/polyscope/discussions/2) — full implementation + caveats, no marketing
+- [#3 — Movers vs Volume: which list do you open first?](https://github.com/LuciferForge/polyscope/discussions/3) — defaults, min-volume sliders, opinionated vs configurable
+- [#4 — For backtesters: what's missing from the historical dataset?](https://github.com/LuciferForge/polyscope/discussions/4) — order-book depth, trade tape, resolution joins, news tagging
+
+PRs equally welcome — [`build_screener.py`](build_screener.py) is ~750 lines of plain Python.
+
 ## License
 
 MIT.
