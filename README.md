@@ -1,6 +1,6 @@
 # PolyScope
 
-**Free Polymarket prediction-market screener.** 13,963 markets indexed, top movers, highest volume, crash signals, and category filters — all in one page.
+**Free Polymarket prediction-market screener.** 15,841 markets indexed, top movers, highest volume, crash signals, and category filters — all in one page.
 
 🔗 **Live:** https://luciferforge.github.io/polyscope/
 
@@ -36,7 +36,7 @@ No API key required. Hits the public Gamma endpoint.
 
 ## Want the underlying data?
 
-The screener shows the latest snapshot. If you want the **full historical price series** — 10.8M+ snapshots across 13,963 markets, 43+ days of orderbook depth, for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) ($9, SQLite + CSV).
+The screener shows the latest snapshot. If you want the **full historical price series** — 15.69M+ price snapshots and 1.54M+ orderbook snapshots across 15,841 markets, 61+ days of depth, for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) ($9, SQLite + CSV). Stats live at [api.protodex.io/stats](https://api.protodex.io/stats).
 
 ## Community / open questions
 
