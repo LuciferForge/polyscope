@@ -42,6 +42,7 @@ The screener shows the latest snapshot. If you want the **full historical price 
 
 The roadmap is being shaped in the open. Live threads (jump in if any of these are useful — comments directly influence what ships next):
 
+- [#5 — Show & tell: how I screen 13,963 markets in 30 seconds](https://github.com/LuciferForge/polyscope/discussions/5) — the actual workflow, start here if you're new
 - [#1 — What screener views would you actually use?](https://github.com/LuciferForge/polyscope/discussions/1) — liquidity-weighted movers, new-market alerts, resolution-soon view, cross-market correlations
 - [#2 — How the "Crash Signal" actually works (methodology + the 73% number)](https://github.com/LuciferForge/polyscope/discussions/2) — full implementation + caveats, no marketing
 - [#3 — Movers vs Volume: which list do you open first?](https://github.com/LuciferForge/polyscope/discussions/3) — defaults, min-volume sliders, opinionated vs configurable
