@@ -36,7 +36,7 @@ No API key required. Hits the public Gamma endpoint.
 
 ## Want the underlying data?
 
-The screener shows the latest snapshot. If you want the **full historical price series** — 18M+ price snapshots and 1.78M+ orderbook snapshots across 18,000+ markets, 74+ days of depth, for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) ($9, SQLite + CSV). Stats live at [api.protodex.io/stats](https://api.protodex.io/stats).
+The screener shows the latest snapshot. If you want the **full historical price series** — 19.3M+ price snapshots and 1.9M+ orderbook snapshots across 19,300+ markets, 80 days of depth, for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) ($9, SQLite + CSV). Stats live at [api.protodex.io/stats](https://api.protodex.io/stats).
 
 ## Community / open questions
 
