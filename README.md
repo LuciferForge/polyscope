@@ -1,6 +1,6 @@
 # PolyScope
 
-**Free Polymarket prediction-market screener.** 18,000+ markets indexed, top movers, highest volume, crash signals, and category filters — all in one page.
+**Free Polymarket prediction-market screener.** 19,300+ markets indexed, top movers, highest volume, crash signals, and category filters — all in one page.
 
 🔗 **Live:** https://luciferforge.github.io/polyscope/
 
