@@ -16,7 +16,7 @@
 
 - Static site generator: `build_screener.py` calls the Polymarket Gamma API, ranks markets, and writes `docs/index.html` + per-market pages.
 - Hosted on GitHub Pages. Zero backend, zero subscription, zero login.
-- Source of truth for the screener data: same pipeline that powers [api.protodex.io](https://api.protodex.io) and the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) on Gumroad.
+- Source of truth for the screener data: same pipeline that powers [api.protodex.io](https://api.protodex.io) and the [Polymarket Historical Dataset](https://manja8.gumroad.com/l/polymarket-quant-toolkit?utm_source=github&utm_medium=readme&utm_campaign=polyscope-2026-07) on Gumroad.
 
 ## Why this exists
 
@@ -36,7 +36,7 @@ No API key required. Hits the public Gamma endpoint.
 
 ## Want the underlying data?
 
-The screener shows the latest snapshot. If you want the **full historical price series** — 17.6M+ price snapshots and 1.75M+ orderbook snapshots across 21,000+ markets, 86 days of depth, for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://gumroad.com/l/agyjd?utm_source=github&utm_medium=readme&utm_campaign=polyscope-week22) ($9, SQLite + CSV). Stats live at [api.protodex.io/stats](https://api.protodex.io/stats).
+The screener shows the latest snapshot. If you want the **full historical price series** — 18.6M+ 15-minute price snapshots across 22,410 markets, 92 days of depth (2026-03-28 → 2026-06-28), for backtesting and feature engineering — that's the [Polymarket Historical Dataset](https://manja8.gumroad.com/l/polymarket-quant-toolkit?utm_source=github&utm_medium=readme&utm_campaign=polyscope-2026-07) ($19, SQLite). The price series is the dense, reliable layer; the order-book table is ~94% thin-market placeholders, so don't buy this for the book. Stats live at [api.protodex.io/stats](https://api.protodex.io/stats).
 
 ## Community / open questions
 
